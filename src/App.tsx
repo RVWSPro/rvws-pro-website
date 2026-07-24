@@ -37,7 +37,7 @@ function Home() {
 export default function App() {
   return (
     <LanguageProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/rvws-pro-website">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/privacy" element={<Privacy />} />
