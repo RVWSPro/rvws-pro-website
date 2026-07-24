@@ -1,0 +1,230 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    border-color: rgba(255, 255, 255, 0.06);
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-black text-white font-sans antialiased;
+    font-feature-settings: 'ss01', 'cv01', 'cv11';
+  }
+
+  section {
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 768px) {
+    section {
+      width: 100%;
+      padding-left: 20px;
+      padding-right: 20px;
+      text-align: center;
+    }
+  }
+
+  ::selection {
+    background: rgba(59, 130, 246, 0.35);
+    color: #ffffff;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  /* Glassmorphism card */
+  .glass {
+    @apply relative rounded-2xl bg-white/[0.03] backdrop-blur-xl;
+    border: 1px solid rgba(255, 255, 255, 0.30);
+    background-image: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.01) 40%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  .glass-hover {
+    @apply transition-all duration-500 ease-out;
+  }
+  .glass-hover:hover {
+    @apply bg-white/[0.05] -translate-y-1;
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow:
+      0 20px 50px -20px rgba(59, 130, 246, 0.25),
+      0 0 0 1px rgba(255, 255, 255, 0.04);
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 ease-out select-none;
+  }
+  .btn-primary {
+    @apply bg-white text-black hover:bg-white/90 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.5)] hover:-translate-y-0.5;
+  }
+  .btn-outline {
+    @apply border border-white/20 text-white hover:border-white/40 hover:bg-white/5 hover:-translate-y-0.5;
+  }
+  .btn-glow {
+    @apply bg-blue-600 text-white hover:bg-blue-500 hover:shadow-[0_15px_50px_-12px_rgba(59,130,246,0.7)] hover:-translate-y-0.5;
+  }
+
+  /* Section label */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-blue-300 backdrop-blur-md;
+  }
+
+  /* AI automation service points — checkmark + label on one line, left-aligned */
+  .feature-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    text-align: left;
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .feature-item {
+      display: flex !important;
+      align-items: flex-start !important;
+      text-align: left !important;
+      width: 100%;
+    }
+
+    .feature-item .feature-icon {
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      padding: 0;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .feature-item .ai-feature-text {
+      font-size: 13px;
+      white-space: nowrap;
+      text-align: left;
+      flex: 1;
+      min-width: 0;
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Hide scrollbar but keep scroll */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .bg-grid {
+    background-image: var(--tw-bg-grid, none);
+    background-size: 64px 64px;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 200ms ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+/* Particle canvas — fill its container, no excess height */
+canvas {
+  height: 100% !important;
+}
+
+/* Available-for-clients pill wrapper — left on desktop, centered on mobile */
+.available-label-wrap {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding-bottom: 20px;
+  }
+
+  .how-it-works-section {
+    padding-top: 40px;
+  }
+
+  .available-label-wrap {
+    justify-content: center;
+  }
+}
+
+/* Product cards — consistent feature-list to button gap on mobile */
+@media (max-width: 768px) {
+  .product-features {
+    min-height: 0;
+    height: auto;
+    flex: none;
+    margin-bottom: 32px;
+  }
+
+  .product-card-button {
+    margin-top: 0;
+  }
+
+  /* Feature rows — keep wrapped text left-aligned, icon fixed in place */
+  .pricing-row .feature-text {
+    flex: 1;
+    min-width: 0;
+    text-align: left !important;
+  }
+
+  /* Price row — center on mobile only */
+  .pricing-price-row {
+    justify-content: center;
+  }
+}
