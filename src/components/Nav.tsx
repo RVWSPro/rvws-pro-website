@@ -8,7 +8,7 @@ const SECTION_IDS = ['how', 'pricing', 'why', 'faq'] as const;
 
 export default function Nav() {
   const { t } = useLang();
-  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
   const scrollTo = (id: string) => {
   setOpen(false);
   const el = document.getElementById(id);
@@ -20,7 +20,6 @@ const LINKS = SECTION_IDS.map((s) => ({
   label: t.nav[s === 'how' ? 'how' : s === 'pricing' ? 'products' : s === 'why' ? 'why' : 'faq'],
   id: s,
 }));
-  const logoHref = isHome ? '#top' : '/';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -39,7 +38,7 @@ const LINKS = SECTION_IDS.map((s) => ({
     >
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8 lg:h-24 lg:px-10">
         {/* Logo */}
-       <a onClick={() => scrollTo('top')} style={{ cursor: 'pointer' }} className="flex items-center...
+      <a onClick={() => scrollTo('top')} style={{ cursor: 'pointer' }} className="flex items-center">
           <span
             style={{
               display: 'inline-block',
