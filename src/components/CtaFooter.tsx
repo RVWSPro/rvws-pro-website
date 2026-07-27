@@ -79,7 +79,7 @@ export default function CtaFooter() {
       {/* Footer bar */}
       <div className="border-t border-white/5">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-5 py-10 sm:px-8 md:flex-row lg:px-10 lg:py-12">
-          <a href="#top" className="flex items-center transition-opacity duration-300 hover:opacity-80">
+          <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="flex items-center transition-opacity duration-300 hover:opacity-80">
             <span
               style={{
                 display: 'inline-block',
@@ -118,15 +118,7 @@ export default function CtaFooter() {
         <nav className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-2">
             {FOOTER_NAV.map((l) =>
-              'to' in l ? (
-                <Link
-                  key={l.to}
-                  to={l.to}
-                  className="text-xs uppercase tracking-wider text-slate-muted transition-colors hover:text-white"
-                >
-                  {l.label}
-                </Link>
-              ) : (
+              'href' in l ? (
                 <a
                   key={l.href}
                   href={l.href}
@@ -134,6 +126,20 @@ export default function CtaFooter() {
                     target: '_blank',
                     rel: 'noopener noreferrer',
                   })}
+                  className="text-xs uppercase tracking-wider text-slate-muted transition-colors hover:text-white"
+                >
+                  {l.label}
+                </a>
+              ) : (
+                <a
+                  key={l.id}
+                  href={`#${l.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const el = document.getElementById(l.id!);
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    else window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
                   className="text-xs uppercase tracking-wider text-slate-muted transition-colors hover:text-white"
                 >
                   {l.label}
