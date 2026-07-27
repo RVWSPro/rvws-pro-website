@@ -40,7 +40,7 @@ const LINKS = SECTION_IDS.map((s) => ({
     >
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8 lg:h-24 lg:px-10">
         {/* Logo */}
-      <a onClick={() => scrollTo('top')} style={{ cursor: 'pointer' }} className="flex items-center">
+     <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ cursor: 'pointer' }} className="flex items-center">
           <span
             style={{
               display: 'inline-block',
