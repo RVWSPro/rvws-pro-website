@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
 import HowItWorks from '@/components/HowItWorks';
@@ -37,14 +37,14 @@ function Home() {
 export default function App() {
   return (
     <LanguageProvider>
-      <BrowserRouter basename="/rvws-pro-website">
+      <HashRouter basename="/rvws-pro-website">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
         </Routes>
         <FloatingWhatsApp />
-      </BrowserRouter>
+      </HashRouter>
     </LanguageProvider>
   );
 }
