@@ -37,7 +37,7 @@ function Home() {
 export default function App() {
   return (
     <LanguageProvider>
-      <HashRouter basename="/rvws-pro-website">
+      <HashRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/privacy" element={<Privacy />} />
