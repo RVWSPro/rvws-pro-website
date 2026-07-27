@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+// (delete this entire line)
 import { MessageCircle, Star, ArrowUpRight } from 'lucide-react';
 import { WA_LINKS, WHATSAPP_PHONE } from '@/lib/site';
 import { useReveal } from '@/lib/useReveal';
@@ -8,12 +8,12 @@ export default function CtaFooter() {
   const { t } = useLang();
   const ref = useReveal<HTMLDivElement>();
 
-  const FOOTER_NAV = [
-    { label: t.footer.nav[0].label, href: '#pricing' },
-    { label: t.footer.nav[1].label, href: '#faq' },
+ const FOOTER_NAV = [
+    { label: t.footer.nav[0].label, id: 'pricing' },
+    { label: t.footer.nav[1].label, id: 'faq' },
     { label: t.footer.nav[2].label, href: WA_LINKS.general, external: true },
-    { label: t.footer.nav[3].label, to: '/privacy' as const },
-    { label: t.footer.nav[4].label, to: '/terms' as const },
+    { label: t.footer.nav[3].label, id: 'privacy' },
+    { label: t.footer.nav[4].label, id: 'terms' },
   ];
 
   return (
