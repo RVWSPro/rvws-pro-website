@@ -9,7 +9,7 @@ const SECTION_IDS = ['how', 'pricing', 'why', 'faq'] as const;
 export default function Nav() {
   const { t } = useLang();
   const [open, setOpen] = useState(false);
-  const scrollTo = (id: string) => {
+const [scrolled, setScrolled] = useState(false);
   setOpen(false);
   const el = document.getElementById(id);
   if (el) el.scrollIntoView({ behavior: 'smooth' });
