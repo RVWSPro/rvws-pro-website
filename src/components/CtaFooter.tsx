@@ -56,9 +56,17 @@ export default function CtaFooter() {
               {t.cta.primary}
               <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
-            <a href="#pricing" className="btn btn-outline px-7 py-3.5">
-              {t.cta.secondary}
-            </a>
+            <a
+  href="#pricing"
+  onClick={(e) => {
+    e.preventDefault();
+    const el = document.getElementById('pricing');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }}
+  className="btn btn-outline px-7 py-3.5"
+>
+  {t.cta.secondary}
+</a>
           </div>
 
           {/* trust line */}
