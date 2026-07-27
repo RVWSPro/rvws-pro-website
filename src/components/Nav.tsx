@@ -9,15 +9,17 @@ const SECTION_IDS = ['how', 'pricing', 'why', 'faq'] as const;
 export default function Nav() {
   const { t } = useLang();
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  const isHome =
-    typeof window === 'undefined' || window.location.pathname === '/';
+  const scrollTo = (id: string) => {
+  setOpen(false);
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+  else window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 
-  const linkHref = (id: string) => (isHome ? `#${id}` : `/#${id}`);
-  const LINKS = SECTION_IDS.map((s) => ({
-    label: t.nav[s === 'how' ? 'how' : s === 'pricing' ? 'products' : s === 'why' ? 'why' : 'faq'],
-    href: linkHref(s),
-  }));
+const LINKS = SECTION_IDS.map((s) => ({
+  label: t.nav[s === 'how' ? 'how' : s === 'pricing' ? 'products' : s === 'why' ? 'why' : 'faq'],
+  id: s,
+}));
   const logoHref = isHome ? '#top' : '/';
 
   useEffect(() => {
@@ -37,7 +39,7 @@ export default function Nav() {
     >
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8 lg:h-24 lg:px-10">
         {/* Logo */}
-        <a href={logoHref} className="flex items-center transition-opacity duration-300 hover:opacity-80">
+       <a onClick={() => scrollTo('top')} style={{ cursor: 'pointer' }} className="flex items-center...
           <span
             style={{
               display: 'inline-block',
@@ -65,12 +67,13 @@ export default function Nav() {
 
         {/* Desktop links */}
         <div className="hidden items-center gap-9 lg:flex">
-          {LINKS.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="group relative text-sm font-medium text-slate-muted transition-colors duration-300 hover:text-white"
-            >
+         {LINKS.map((l) => (
+  <a
+    key={l.id}
+    onClick={() => scrollTo(l.id)}
+    style={{ cursor: 'pointer' }}
+    className="group relative text-sm font-medium text-slate-muted transition-colors duration-300 hover:text-white"
+  >
               {l.label}
               <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-gradient-to-r from-blue-400 to-blue-600 transition-all duration-300 group-hover:w-full" />
             </a>
@@ -107,12 +110,12 @@ export default function Nav() {
       >
         <div className="flex flex-col gap-1 px-5 py-5">
           {LINKS.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className="rounded-xl px-4 py-3 text-sm font-medium text-slate-muted transition-colors hover:bg-white/5 hover:text-white"
-            >
+  <a
+    key={l.id}
+    onClick={() => scrollTo(l.id)}
+    style={{ cursor: 'pointer' }}
+    className="rounded-xl px-4 py-3 text-sm font-medium text-slate-muted transition-colors hover:bg-white/5 hover:text-white"
+  >
               {l.label}
             </a>
           ))}
