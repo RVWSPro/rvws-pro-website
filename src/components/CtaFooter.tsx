@@ -1,4 +1,4 @@
-// (delete this entire line)
+import { Link } from 'react-router-dom';
 import { MessageCircle, Star, ArrowUpRight } from 'lucide-react';
 import { WA_LINKS, WHATSAPP_PHONE } from '@/lib/site';
 import { useReveal } from '@/lib/useReveal';
@@ -12,8 +12,8 @@ export default function CtaFooter() {
     { label: t.footer.nav[0].label, id: 'pricing' },
     { label: t.footer.nav[1].label, id: 'faq' },
     { label: t.footer.nav[2].label, href: WA_LINKS.general, external: true },
-    { label: t.footer.nav[3].label, id: 'privacy' },
-    { label: t.footer.nav[4].label, id: 'terms' },
+    { label: t.footer.nav[3].label, to: '/privacy' },
+    { label: t.footer.nav[4].label, to: '/terms' },
   ];
 
   return (
@@ -118,7 +118,15 @@ export default function CtaFooter() {
         <nav className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-2">
             {FOOTER_NAV.map((l) =>
-              'href' in l ? (
+              'to' in l ? (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  className="text-xs uppercase tracking-wider text-slate-muted transition-colors hover:text-white"
+                >
+                  {l.label}
+                </Link>
+              ) : 'href' in l ? (
                 <a
                   key={l.href}
                   href={l.href}
