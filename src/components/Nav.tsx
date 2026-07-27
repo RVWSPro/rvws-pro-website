@@ -10,11 +10,13 @@ export default function Nav() {
   const { t } = useLang();
   const [open, setOpen] = useState(false);
 const [scrolled, setScrolled] = useState(false);
-  setOpen(false);
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth' });
-  else window.scrollTo({ top: 0, behavior: 'smooth' });
-};
+
+  const scrollTo = (id: string) => {
+    setOpen(false);
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    else window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
 const LINKS = SECTION_IDS.map((s) => ({
   label: t.nav[s === 'how' ? 'how' : s === 'pricing' ? 'products' : s === 'why' ? 'why' : 'faq'],
