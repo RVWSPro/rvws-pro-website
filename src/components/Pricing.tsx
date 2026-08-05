@@ -6,7 +6,7 @@ import { useLang } from '@/lib/LanguageContext';
 const PRODUCT_META = [
   {
     name: 'RVWS Pro Solo',
-    price: '€25',
+    price: '€30',
     cadence: '/ one-time',
     image: 'images/rvws_solo_closeup.png',
     href: WA_LINKS.standard,
