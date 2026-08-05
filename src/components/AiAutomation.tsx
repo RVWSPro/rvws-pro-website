@@ -3,7 +3,7 @@ import { useReveal } from '@/lib/useReveal';
 import { useLang } from '@/lib/LanguageContext';
 
 const AI_URL =
-  'https://wa.me/31616045419?text=Hi%20RVWS%20Pro%2C%20I%20want%20to%20know%20more%20about%20AI%20Automation%20for%20my%20business.';
+  'https://wa.me/34659604482?text=Hi%20RVWS%20Pro%2C%20I%20want%20to%20know%20more%20about%20AI%20Automation%20for%20my%20business.';
 
 export default function AiAutomation() {
   const { t } = useLang();
