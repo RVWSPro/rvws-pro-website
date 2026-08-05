@@ -1,7 +1,7 @@
 // Central site config — WhatsApp number + pre-filled messages.
 // Swap PHONE for the client's real WhatsApp Business number (international format, no +).
 
-export const WHATSAPP_PHONE = '31616045419';
+export const WHATSAPP_PHONE = '34659604482';
 
 export const waLink = (message: string): string => {
   const text = encodeURIComponent(message);
